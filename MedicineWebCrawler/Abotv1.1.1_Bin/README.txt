@@ -1,0 +1,3 @@
+Abot.dll is the main library, all others are required dependencies.
+
+-The HtmlAgilityPack.dll assembly is a patched version to fix stackoverflow errors which is a problem in the latest official release of Html Agility Pack. You can read more about it here (http://code.google.com/p/abot/issues/detail?id=77). Be sure to use this binary instead of the latest nuget package as of 4/11/2013 if you want to avoid total crashes caused by the Html Agility Pack Bug. 
