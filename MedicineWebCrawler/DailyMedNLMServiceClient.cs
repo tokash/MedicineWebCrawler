@@ -168,9 +168,9 @@ namespace MedicineWebCrawler
             }           
         }
 
-        private string RetrieveDrugWebPage(string URL)
+        private string RetrieveDrugWebPage(string iURL)
         {
-            HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(URL);
+            HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(iURL);
             myRequest.Method = "GET";
 
             WebResponse myResponse = myRequest.GetResponse();
@@ -184,27 +184,27 @@ namespace MedicineWebCrawler
             return result;
         }
 
-        private string GetInformation(string[] i_DrugInformation, ref int i_StartIdx, string[] i_StopFlags)
+        private string GetInformation(string[] iDrugInformation, ref int ioStartIdx, string[] iStopFlags)
         {
             string info = string.Empty;
-            int i = i_StartIdx;
-            string currLine = i_DrugInformation[i];
+            int i = ioStartIdx;
+            string currLine = iDrugInformation[i];
             List<String> informationParts = new List<string>();
 
 
             try
             {
-                while (VerifyStopFlag(currLine, i_StopFlags))
+                while (VerifyStopFlag(currLine, iStopFlags))
                 {
                     if (currLine != string.Empty && currLine != "\n" && currLine != "&nbsp;")
                     {
                         informationParts.Add(currLine.Replace("&nbsp;", ""));
                     }
 
-                    if (i < i_DrugInformation.Length)
+                    if (i < iDrugInformation.Length)
                     {
                         i++;
-                        currLine = i_DrugInformation[i];
+                        currLine = iDrugInformation[i];
                     }
                     else
                     {
@@ -241,13 +241,13 @@ namespace MedicineWebCrawler
             return info;
         }
 
-        private bool VerifyStopFlag(string data, string[] i_StopFlags)
+        private bool VerifyStopFlag(string iData, string[] iStopFlags)
         {
             bool isVerified = true;
 
-            foreach (string flag in i_StopFlags)
+            foreach (string flag in iStopFlags)
             {
-                if (data.Contains(flag))
+                if (iData.Contains(flag))
                 {
                     isVerified = false;
                 }

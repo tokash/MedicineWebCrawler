@@ -8,12 +8,12 @@ namespace MedicineWebCrawler
 {
     public class TextFilesCommon
     {
-        public static List<String> ReadTextFileToList(string path)
+        public static List<String> ReadTextFileToList(string iPath)
         {
             List<String> list = new List<string>();
 
             //read whole file to buffer
-            using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (FileStream fs = File.Open(iPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (BufferedStream bs = new BufferedStream(fs))
             using (StreamReader sr = new StreamReader(bs))
             {
@@ -27,12 +27,12 @@ namespace MedicineWebCrawler
             return list;
         }
 
-        public static string ReadTextFileToString(string path)
+        public static string ReadTextFileToString(string iPath)
         {
             string line = string.Empty;
 
             //read whole file to buffer
-            using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (FileStream fs = File.Open(iPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (StreamReader sr = new StreamReader(fs))
             {
                 line = sr.ReadToEnd();
@@ -42,24 +42,24 @@ namespace MedicineWebCrawler
             return line;
         }
 
-        public static void WriteTextFile(List<String> i_lines, string o_OutputFilePath)
+        public static void WriteTextFile(List<String> iLines, string oOutputFilePath)
         {
-            using (StreamWriter writer = new StreamWriter(o_OutputFilePath, true))
+            using (StreamWriter writer = new StreamWriter(oOutputFilePath, true))
             {
-                foreach (string item in i_lines)
+                foreach (string item in iLines)
                 {
                     writer.WriteLine(item);
                 }
             }
         }
 
-        public static void WriteCSVFile(string o_CSVFilepath, List<String> i_Lines, string i_Columns)
+        public static void WriteCSVFile(string oCSVFilepath, List<String> iLines, string iColumns)
         {
-            using (StreamWriter csvRequiredCommitDetails = new StreamWriter(o_CSVFilepath, true))
+            using (StreamWriter csvRequiredCommitDetails = new StreamWriter(oCSVFilepath, true))
             {
-                csvRequiredCommitDetails.WriteLine(i_Columns);
+                csvRequiredCommitDetails.WriteLine(iColumns);
 
-                foreach (string line in i_Lines)
+                foreach (string line in iLines)
                 {
                     csvRequiredCommitDetails.WriteLine(line);
                 }

@@ -10,13 +10,13 @@ namespace MedicineWebCrawler
 {
     class WebCommon
     {
-        public static void DownloadWebFile(string i_URI, string o_LocalFilepath)
+        public static void DownloadWebFile(string iURI, string oLocalFilepath)
         {
             WebClient Client = new WebClient ();
-            Client.DownloadFile(i_URI, o_LocalFilepath);
+            Client.DownloadFile(iURI, oLocalFilepath);
         }
 
-        public static List<string> GetLinksFromHtml(string i_URI, string i_Pattern, string extension)
+        public static List<string> GetLinksFromHtml(string iURI, string iPattern, string iIxtension)
         {
             List<string> neededLinks = new List<string>();
             HtmlDocument doc = new HtmlDocument();
@@ -24,7 +24,7 @@ namespace MedicineWebCrawler
 
             if (!File.Exists(tempFilepath))
             {
-                DownloadWebFile(i_URI, tempFilepath);
+                DownloadWebFile(iURI, tempFilepath);
             }
 
             doc.Load(tempFilepath);
@@ -32,11 +32,11 @@ namespace MedicineWebCrawler
             HtmlNodeCollection links = doc.DocumentNode.SelectNodes("//a[@href]");
             foreach (HtmlNode node in links)
             {
-                if (node.OuterHtml.Contains(i_Pattern))
+                if (node.OuterHtml.Contains(iPattern))
                 {
-                    if (Path.GetExtension(node.Attributes["href"].Value) == extension)
+                    if (Path.GetExtension(node.Attributes["href"].Value) == iIxtension)
                     {
-                        neededLinks.Add(i_URI + node.Attributes["href"].Value);    
+                        neededLinks.Add(iURI + node.Attributes["href"].Value);    
                     }
                     
                 }
