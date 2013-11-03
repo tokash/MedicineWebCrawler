@@ -7,10 +7,16 @@ namespace MedicineWebCrawler
 {
     public class Drug
     {
+        public Drug()
+        {
+            Name = "";
+            Description = "";
+        }
+
         public string Name { get; set; }
         public string Description { get; set; }
-        public string ActiveIngredients { get; set; }
-        public string InActiveIngredients { get; set; }
+        public List<string> ActiveIngredients { get; set; }
+        public List<string> InActiveIngredients { get; set; }
         public List<SideEffect> SideEffectsList { get; set; }
     }
 

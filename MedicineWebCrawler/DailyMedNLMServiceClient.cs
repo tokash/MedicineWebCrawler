@@ -131,13 +131,13 @@ namespace MedicineWebCrawler
                                             j = j + 6;
                                             string[] stopFlagsActive = { "Inactive Ingredients" };
                                             string activeIngredients = HttpUtility.HtmlDecode(GetInformation(drugInformation, ref j, stopFlagsActive)).Trim();
-                                            ioDrug.ActiveIngredients = activeIngredients;
+                                            //ioDrug.ActiveIngredients = activeIngredients;
                                             break;
                                         case "Inactive Ingredients":
                                             j += 6;
                                             string[] stopFlagsInactive = { "Packaging", "Product Characteristics" };
                                             string inactiveIngredients = HttpUtility.HtmlDecode(GetInformation(drugInformation, ref j, stopFlagsInactive)).Trim();
-                                            ioDrug.InActiveIngredients = inactiveIngredients;
+                                            //ioDrug.InActiveIngredients = inactiveIngredients;
                                             _BreakDrugLoop = true;
                                             break;
                                         //case "Inactive Ingredients":
@@ -154,11 +154,6 @@ namespace MedicineWebCrawler
                     }
 
                     _BreakDrugLoop = false;
-                }
-                else //no active\inactive data for drug
-                {
-                    ioDrug.ActiveIngredients = "Active ingredients not found";
-                    ioDrug.InActiveIngredients = "InActive ingredients not found";
                 }
 
             }

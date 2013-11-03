@@ -35,7 +35,7 @@ namespace MedicineWebCrawler
             ////crawler.Crawl();
             DrugsComMedicineParser drugsParser = new DrugsComMedicineParser(@"d:\www.drugs.com\mtm", false);
 
-            drugs = drugsParser.Parse(1, 1000);
+            drugs = drugsParser.Parse(1, 500);
             watch.Stop();
 
             Console.WriteLine(String.Format("Time elapsed since program start: {0}", watch.Elapsed));
